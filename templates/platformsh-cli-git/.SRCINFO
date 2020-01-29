@@ -1,0 +1,18 @@
+pkgbase = platformsh-cli-git
+	pkgdesc = The unified tool for managing your Platform.sh services from the command line.
+	pkgver = {{CLI_VERSION}}
+	pkgrel = {{PACKAGE_RELEASE_VERSION}}
+	url = https://github.com/platformsh/platformsh-cli
+	arch = any
+	license = GPL
+	depends = git
+	depends = php
+    depends = composer
+	optdepends = drush
+	provides = platformsh-cli={{CLI_VERSION}}
+	conflicts = platformsh-cli
+	source = platformsh-cli::git+https://github.com/platformsh/platformsh-cli.git#branch=master
+	md5sums = SKIP
+
+pkgname = platformsh-cli-git
+

@@ -1,0 +1,35 @@
+# Maintainer: Frédéric Potvin <frederic.potvin@platform.sh>
+pkgname=platformsh-cli
+pkgver='{{CLI_VERSION}}'
+pkgrel={{PACKAGE_RELEASE_VERSION}}
+pkgdesc="Platform.sh CLI"
+arch=('any')
+url="https://github.com/platformsh/platformsh-cli"
+license=('MIT')
+groups=()
+depends=('php>=5.5.9')
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=('platformsh-cli')
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=
+changelog=
+source=("$pkgname-$pkgver.phar::https://github.com/platformsh/platformsh-cli/releases/download/v$pkgver/platform.phar")
+sha256sums=('{{CLI_256SUMS}}')
+noextract=('$pkgname-$pkgver.phar')
+
+build() {
+  mv $pkgname-$pkgver.phar platform
+  chmod +x platform
+  mkdir -p ~/.platformsh
+  ./platform self:install -y
+}
+
+package() {
+  cd "$srcdir"
+  install -D platform "$pkgdir/usr/bin/platform"
+}
